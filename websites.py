@@ -13,7 +13,12 @@ class website:
 class eneba(website):
     def __init__(self, region):
         super().__init__(region)
-        self.currency = {country: None for country in countries}
+        # create currency dict if not exsists
+        try:
+            isinstance(self.currency, dict)
+        except AttributeError:
+            self.currency = {country: None for country in countries}
+            
         self.url = r"https://www.eneba.com/us/store/steam-gift-cards"
         self.params = {
             "drms[]": "steam gift card",
@@ -23,8 +28,7 @@ class eneba(website):
         }
         
     def set_region(self, region):
-        super().__init__(region)
-        self.region = region
+        self.__init__(region)
         
     def get_data(self):
         # fetch data from website
@@ -83,7 +87,7 @@ class eneba(website):
 if __name__ == "__main__":
     website = eneba("ukraine")
     for country in countries:
-        website.get_data()
         website.set_region(country)
+        website.get_data()
         
     print(website.currency)
