@@ -9,6 +9,5 @@ from main import get_best_price
 def test_main_get_best_price():
     res = get_best_price("Baldur's Gate 3")
     assert isinstance(res["country"], str)
-    
-    for row in res[1:]:
-        assert isinstance(row, float)
+    assert isinstance(res["price"], float)
+    assert isinstance(res["pln_price"], float)
