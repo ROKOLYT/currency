@@ -26,7 +26,9 @@ class steam():
             return None
         
     def get_game_info(self) -> str:
-        driver = uc.Chrome()
+        options = uc.ChromeOptions()
+        options.headless = False
+        driver = uc.Chrome(options=options)
         
         # Load website
         driver.minimize_window()

@@ -30,7 +30,9 @@ class eneba(website):
         self.__init__(region)
         
     def get_data(self) -> dict | None:
-        driver = uc.Chrome()
+        options = uc.ChromeOptions()
+        options.headless = False
+        driver = uc.Chrome(options=options)
         
         # Load website
         driver.minimize_window()
